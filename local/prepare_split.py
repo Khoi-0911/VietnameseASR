@@ -57,11 +57,11 @@ def main():
     ap.add_argument("--sort", choices=["naive", "recorder"], default="recorder")
     ap.add_argument("--path-root", type=Path, default=REPO_ROOT,
                 help="gốc để hạ audio_path về tương đối; phải trùng --audio-root ở M2")
-    a = ap.parse_args()
+    args = ap.parse_args()
 
     rows, report = [], []
-    for unit in find_units(a.data):
-        speaker, tag, pairs = load_unit(unit, Path(a.data), a.sort)
+    for unit in find_units(args.data):
+        speaker, tag, pairs = load_unit(unit, Path(args.data), args.sort)
         d = np.array([dur(w) for w, _ in pairs])
         wc = np.array([len(t.split()) for _, t in pairs])
         corr = float(np.corrcoef(d, wc)[0, 1]) if len(pairs) > 2 else float("nan")
@@ -76,7 +76,7 @@ def main():
         #                CẢNH BÁO: std_wc ~ 0 thì corr MẤT Ý NGHĨA (mẫu số ~ 0 -> ra nhiễu),
         #                lúc đó corr thấp KHÔNG phải bằng chứng lệch nhãn. Phải kiểm tra thủ công.
         report.append((tag, len(pairs), round(corr, 3), round(float(d.std()), 2), round(float(wc.std()), 2)))
-        path_root = a.path_root.resolve()
+        path_root = args.path_root.resolve()
         for i, (w, t) in enumerate(pairs):
             # BẪY: rglob trả path tuyệt đối. Ghi thẳng vào TSV -> lộ path máy cá nhân
             # và chết trên Kaggle. Hạ về tương đối so với path_root; relative_to()
@@ -84,7 +84,7 @@ def main():
             rel = w.resolve().relative_to(path_root)
             rows.append((f"{tag}_{i:04d}", speaker, rel.as_posix(), t))
 
-    out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
+    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
 
     FIELDS = ["utt_id", "speaker", "audio_path", "text"]
     for split in ["train", "dev", "test"]:
@@ -93,7 +93,7 @@ def main():
             w.writerow(FIELDS)
             w.writerows(rows)
 
-    print(f"sort={a.sort}  tổng {len(rows)} dòng")
+    print(f"sort={args.sort}  tổng {len(rows)} dòng")
     print(f"{'unit':14} {'n':>4} {'corr':>7} {'std_dur':>8} {'std_wc':>7}")
     for tag, n, c, sd, sw in report:
         print(f"{tag:14} {n:>4} {c:>7} {sd:>8} {sw:>7}")
