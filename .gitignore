@@ -6,4 +6,5 @@ data/manifests*/
 data/lang_bpe_*/
 __pycache__/
 dataset/
+data_raw/
 .vscode/

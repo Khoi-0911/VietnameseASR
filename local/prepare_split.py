@@ -53,7 +53,7 @@ def main():
     corr là self-check alignment: ghép đúng thì DƯƠNG rõ; lệch thì tụt về 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", required=True)
-    ap.add_argument("--out", default="transcripts_matched_u20")
+    ap.add_argument("--out", default="transcripts_matched")
     ap.add_argument("--sort", choices=["naive", "recorder"], default="recorder")
     ap.add_argument("--path-root", type=Path, default=REPO_ROOT,
                 help="gốc để hạ audio_path về tương đối; phải trùng --audio-root ở M2")
