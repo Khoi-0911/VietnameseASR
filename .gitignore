@@ -1,0 +1,9 @@
+*.wav
+*.pt
+*.onnx
+fbank_*/
+data/manifests*/
+data/lang_bpe_*/
+__pycache__/
+dataset/
+.vscode/
