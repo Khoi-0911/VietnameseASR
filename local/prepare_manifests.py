@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 M2 - bước 1/2.
 

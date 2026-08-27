@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 M0.5 - chuẩn hoá audio. PHẢI chạy trước M1 (prepare_split.py).
 
