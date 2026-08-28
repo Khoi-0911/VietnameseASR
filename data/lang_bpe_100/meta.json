@@ -1,0 +1,15 @@
+{
+  "tsv": "transcripts_matched/train.tsv",
+  "cuts": null,
+  "n_rows_tsv": 1055,
+  "n_rows_used": 1055,
+  "vocab_size": 100,
+  "model_type": "unigram",
+  "character_coverage": 1.0,
+  "normalization": "NFC (ép trong build_corpus)",
+  "alphabet_size": 90,
+  "alphabet": " abcdeghiklmnopqrstuvwxyàáâãèéêìíòóôõùúýăđĩũơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỷỹ",
+  "n_tokens": 81367,
+  "tokens_per_char": 0.8384,
+  "git_sha": "aebebb439a20a5995adde9786e7f4b74dd70b07b"
+}

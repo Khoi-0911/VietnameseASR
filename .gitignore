@@ -3,7 +3,7 @@
 *.onnx
 fbank_*/
 data/manifests*/
-data/lang_bpe_*/
+data/lang_bpe_*/unigram_*.model
 __pycache__/
 dataset/
 data_raw/
